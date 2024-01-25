@@ -24,10 +24,9 @@ function TopicList() {
 
 
     const topicItems = topics.map((topic) => (
-        <Topic
-            key={topic.id}
-            category={topic}
-        />
+      <li>
+        {topic}
+      </li>
     
     ));
     return (

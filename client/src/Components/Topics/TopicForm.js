@@ -1,5 +1,8 @@
+import { TopicContext } from "../../Context/TopicContext"
 
-function CategoriesForm({handleAddCategory}){
+function TopicForm(){
+    const {handleAddTopic} = useContext(TopicContext)
+
     const history = useHistory()
     const [topic, setTopic] = useState("")
 
@@ -37,8 +40,7 @@ function CategoriesForm({handleAddCategory}){
 
     return (
 
-        <div className="NewCategory" >
-            <h2>Add New Topic</h2>
+        <div className="NewTopic" >
             <form  onSubmit={handleSubmit}>
                 <input 
                     onChange={handleChange}

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { UsersContext } from "./Context/UsersContext";
 import { useNavigate } from "react-router-dom";
+import { UsersContext } from "../Context/UsersContext";
 // import { ErrorsContext } from "./Context/ErrorsContext";
 
 function SignUpForm() {

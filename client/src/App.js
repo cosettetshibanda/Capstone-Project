@@ -1,9 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import NavBar from './Components/NavBar';
 import { UsersProvider } from './Context/UsersContext';
 import Login from './Components/Login';
 import SignUpForm from './Components/SignUpForm';
+import { Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (

@@ -1,6 +1,8 @@
+import { useContext, useEffect, useState } from "react";
 import { TopicContext } from "../../Context/TopicContext";
 import { UsersContext } from "../../Context/UsersContext";
-import Topic from "./Topic";
+import { useNavigate } from "react-router-dom";
+
 
 
 function TopicList() {

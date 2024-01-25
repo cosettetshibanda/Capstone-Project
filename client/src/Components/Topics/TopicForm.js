@@ -1,9 +1,11 @@
+import { useContext, useState } from "react"
 import { TopicContext } from "../../Context/TopicContext"
+import { useNavigate } from "react-router-dom"
 
 function TopicForm(){
     const {handleAddTopic} = useContext(TopicContext)
 
-    const history = useHistory()
+    const navigate = useNavigate()
     const [topic, setTopic] = useState("")
 
 
@@ -32,7 +34,7 @@ function TopicForm(){
         .then(data => {
 
             handleAddTopic(data)
-            history.push("/");
+            navigate("/");
         })
         setTopic("")
     }

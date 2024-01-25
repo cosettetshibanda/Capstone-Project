@@ -27,7 +27,7 @@ function TopicList() {
 
     const topicItems = topics.map((topic) => (
       <li>
-        <NavLink to={`/topics/${topic.id}`}>{topic}</NavLink>
+        <NavLink to={`/topics/${topic.id}`}>{topic.topic}</NavLink>
       </li>
     
     ));

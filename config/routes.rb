@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :questions
   resources :answers
   resources :topics
+  resources :users
 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"

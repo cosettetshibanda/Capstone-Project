@@ -1,24 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import NavBar from './Components/NavBar';
+import { UsersProvider } from './Context/UsersContext';
+import Login from './Components/Login';
+import SignUpForm from './Components/SignUpForm';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <main>
+    <UsersProvider >
+      <NavBar />
+      <Routes>
+        <Route path="/signup" element={<SignUpForm />} /> 
+        <Route path="/login" element={<Login/>} />
+      </Routes>
+    </UsersProvider>
+   </main>
   );
 }
 

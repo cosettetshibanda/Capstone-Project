@@ -1,7 +1,8 @@
 import { Link,} from "react-router-dom";
 
 import { useContext } from "react"
-import { UsersContext } from "./Context/UsersContext"
+import { UsersContext } from "../Context/UsersContext";
+
 
 
 function NavBar() {

@@ -27,12 +27,15 @@ function TopicList() {
 
     const topicItems = topics.map((topic) => (
       <li>
-        <NavLink to={`/topics/${topic.id}`}>{topic.topic}</NavLink>
+        <NavLink key={topic.id} to={`/topic/${topic.id}`}>{topic.topic}</NavLink>
       </li>
     
     ));
     return (
-        <div id="topic-list">{topicItems}</div>
+        <>
+            {errorsList}
+            <div id="topic-list">{topicItems}</div>
+        </>
     )
 }
 

@@ -6,6 +6,7 @@ import SignUpForm from './Components/SignUpForm';
 import { Routes, Route } from "react-router-dom";
 import Home from './Components/Home';
 import { TopicProvider } from './Context/TopicContext';
+import TopicCard from './Components/Topics/TopicCard';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/signup" element={<SignUpForm />} /> 
           <Route path="/login" element={<Login/>} />
+          <Route path="/topic/:topic_id" element={<TopicCard />} />
         </Routes>
       </TopicProvider>
     </UsersProvider>

@@ -11,10 +11,6 @@ function TopicForm(){
 
     const handleChange = (e) => {
         setTopic(e.target.value)
-        // setTopic({
-        //     ...topic,
-        //     [e.target.name] :e.target.value
-        // })
     }
 
     const handleSubmit = (e) => {

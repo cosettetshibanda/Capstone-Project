@@ -13,12 +13,11 @@ function TopicCard (){
     const [selectedTopic, setSelectedTopic] = useState({
         questions: []
     })
-    console.log(topics)
+
 
     const topic = topics.find((topic) => topic.id === parseInt(params.topic_id))
 
-    console.log(topic)
-    console.log(params)
+
     useEffect(() => {
         if(topic){
             setSelectedTopic(topic)

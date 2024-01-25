@@ -1,8 +1,13 @@
 
 
-function TopicQuestions (){
+function TopicQuestions ({question}){
+
     return (
-        <div>HI</div>
+        <>
+            <li>
+                {question.post}
+            </li>
+        </>
     )
 }
 

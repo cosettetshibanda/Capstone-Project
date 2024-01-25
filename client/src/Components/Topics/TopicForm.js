@@ -10,10 +10,11 @@ function TopicForm(){
 
 
     const handleChange = (e) => {
-        setTopic({
-            ...topic,
-            [e.target.name] :e.target.value
-        })
+        setTopic(e.target.value)
+        // setTopic({
+        //     ...topic,
+        //     [e.target.name] :e.target.value
+        // })
     }
 
     const handleSubmit = (e) => {
@@ -48,8 +49,8 @@ function TopicForm(){
                     onChange={handleChange}
                     value={topic} 
                     type="text" 
-                    name="name" 
-                    placeholder="Category name" />
+                    name="topic" 
+                    placeholder="Topic name" />
                 <button 
                     type="submit"
                     >Add Topic</button>

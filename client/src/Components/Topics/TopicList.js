@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { TopicContext } from "../../Context/TopicContext";
 import { UsersContext } from "../../Context/UsersContext";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 
@@ -27,7 +27,7 @@ function TopicList() {
 
     const topicItems = topics.map((topic) => (
       <li>
-        {topic}
+        <NavLink to={`/topics/${topic.id}`}>{topic}</NavLink>
       </li>
     
     ));

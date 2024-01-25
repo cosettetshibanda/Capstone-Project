@@ -38,7 +38,7 @@ function NavBar() {
 
     return (
         <div>
-            <h1>Find the Best Car Seat For You!</h1>
+            <h1>It Takes a Village!</h1>
             <ul>
           { loggedIn ? loggedInLinks() : loggedOutLinks() }
         </ul>

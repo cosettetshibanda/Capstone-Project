@@ -44,6 +44,9 @@ function NavBar() {
     return (
         <div>
             <h1>It Takes a Village!</h1>
+            <p>
+              Being a parent is wonderful but it is also extremely difficult. Every child is different and needs something special. We need each other to learn and give our best to our children. Come make a connection with other parents, get answers to questions, and help other parents.
+            </p>
             <ul>
           { loggedIn ? loggedInLinks() : loggedOutLinks() }
         </ul>

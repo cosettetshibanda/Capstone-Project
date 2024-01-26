@@ -8,24 +8,21 @@ function TopicForm(){
     const navigate = useNavigate()
     const [topic, setTopic] = useState("")
 
-
     const handleChange = (e) => {
-        setTopic(e.target.value)
-    }
+        setTopic({ ...topic, [e.target.name]: e.target.value });
+      };
 
+      
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const newTopic = {
-            ...topic
-        }
     
         fetch ("/topics", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(newTopic)
+            body: JSON.stringify(topic)
         })
         .then(r => r.json())
         .then(data => {

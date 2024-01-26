@@ -27,19 +27,20 @@ const TopicProvider = ({children}) => {
     }
 
 
+    function handleDeleteQuestion(question) {
+        const topic = topics.find((topic) => topic.id === question.topic_id)
+        const updatedQuestions = topic.questions.filter((q) => q.id !==question.id)
+        const updatedTopics = topics.map((t) => t.id === topic.id ? {...topic, questions: updatedQuestions} : t)
 
-    // function handleDeleteReview(review) {
-    //     const carseat = carSeats.find((carseat) => carseat.id === review.carseat_id)
-    //     const updatedReviews = carseat.reviews.filter((r) => r.id !==review.id);
-    //     const updatedCarseat = carSeats.map((c) => c.id === carseat.id ? {...carseat, reviews: updatedReviews} : c)
-      
-    //     setCarSeats(updatedCarseat)
-    // }
+        setTopics(updatedTopics)
+    }
+
+    function handleUpdateQuestion
 
 
 
     return(
-        <TopicContext.Provider value={{topics, setTopics, handleAddTopic}}>{children}</TopicContext.Provider>
+        <TopicContext.Provider value={{topics, setTopics, handleAddTopic, handleDeleteQuestion}}>{children}</TopicContext.Provider>
     )
 }
 

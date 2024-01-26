@@ -1,13 +1,29 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { TopicContext } from "../../Context/TopicContext"
+import { UsersContext } from "../../Context/UsersContext"
+import { useNavigate } from "react-router-dom"
+import EditQuestion from "../Questions/EditQuestion"
 
 
 function TopicQuestions ({question}){
+    const [showEditForm, setShowEditForm] = useState(false)
+    const [errors, setErrors] = useState("")
     const [updateQuestion, setUpdateQuestion] = useState("")
     const {handleDeleteQuestion, handleUpdateQuestion} = useContext(TopicContext)
+    const {loggedIn, currentUser} = useContext(UsersContext)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if(!loggedIn){
+            navigate("/")
+        }
+        return() => {
+            setErrors([])
+        }
+    }, [loggedIn, navigate, setErrors])
 
     const handleDeleteClick = () => {
-        fetch(`http://localhost:9292/questions/${question.id}`, {
+        fetch(`/questions/${question.id}`, {
         method: "DELETE",
         })
         .then(r => r.json())
@@ -24,7 +40,7 @@ function TopicQuestions ({question}){
     const handleSubmit = (e) => {
         e.preventDefault();
     
-        fetch(`http://localhost:9292/questions/${question.id}`, {
+        fetch(`/questions/${question.id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -36,18 +52,43 @@ function TopicQuestions ({question}){
           setUpdateQuestion("")
       }
 
+      const findUsername = () => {
+        if (currentUser.id === question.user_id){
+          return currentUser.username
+        } else {
+          return null
+        }
+      }
+
+      const toggleEditForm = () => {
+        setShowEditForm(!showEditForm);
+      };
+
     return (
         <>
-            <li>
-                {question.post}
-            </li>
-            <form onSubmit={handleSubmit}>
-                    <input value={question.post} type="" name="post" onChange={handleEditChange} />
-                    <button type="submit">Edit</button>
-                </form>
-            <button className="del-btn" onClick={handleDeleteClick} >
-            🗑️
-            </button>
+            {errors}
+            <figure>
+                {findUsername ? (
+                    <li>{question.post} - {findUsername.username}</li>
+                    ) : (
+                    <li>{question.post} - No username found</li>
+                    )}
+                {showEditForm ? (
+                <EditQuestion
+              question={question}
+              toggleEditForm={toggleEditForm}
+            //   handleEditReview={handleEditReview}
+            />
+          ) : (
+             currentUser && currentUser.id === question.user_id ? (
+              <>
+                <button onClick={toggleEditForm}>Edit</button>
+                <button onClick={handleDeleteClick}>Delete</button> 
+              </>
+            ) : null
+          )}
+          
+          </figure>
         </>
     )
 }

@@ -35,12 +35,18 @@ const TopicProvider = ({children}) => {
         setTopics(updatedTopics)
     }
 
-    function handleUpdateQuestion
+    function handleUpdateQuestion(updatedQuestion) {
+        const topic = topics.find((topic) => topic.id === updatedQuestion.topic_id)
+        const updatedQuestions = topic.questions.map((question) => question.id === updatedQuestion.id ? updatedQuestion : question)
+        const updatedTopics = topics.map((t) => t.id === topic.id ? {...topic, questions: updatedQuestions} : t)
+
+        setTopics(updatedTopics)
+    }
 
 
 
     return(
-        <TopicContext.Provider value={{topics, setTopics, handleAddTopic, handleDeleteQuestion}}>{children}</TopicContext.Provider>
+        <TopicContext.Provider value={{topics, setTopics, handleAddTopic, handleDeleteQuestion, handleUpdateQuestion}}>{children}</TopicContext.Provider>
     )
 }
 

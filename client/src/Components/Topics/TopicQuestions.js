@@ -4,7 +4,7 @@ import { TopicContext } from "../../Context/TopicContext"
 
 function TopicQuestions ({question}){
     const [updateQuestion, setUpdateQuestion] = useState("")
-    const {handleDeleteQuestion} = useContext(TopicContext)
+    const {handleDeleteQuestion, handleUpdateQuestion} = useContext(TopicContext)
 
     const handleDeleteClick = () => {
         fetch(`http://localhost:9292/questions/${question.id}`, {
@@ -16,9 +16,10 @@ function TopicQuestions ({question}){
         })
     }
 
-    const handleChange = (e) => {
-        setUpdateQuestion(e.target.value)
-    }
+    const handleEditChange = (e) => {
+        const { name, value } = e.target;
+        setUpdateQuestion({ ...updateQuestion, [name]: value });
+      };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,7 +42,7 @@ function TopicQuestions ({question}){
                 {question.post}
             </li>
             <form onSubmit={handleSubmit}>
-                    <input value={updateQuestion} type="" name="img" placeholder="Question" onChange={handleChange} />
+                    <input value={question.post} type="" name="post" onChange={handleEditChange} />
                     <button type="submit">Edit</button>
                 </form>
             <button className="del-btn" onClick={handleDeleteClick} >

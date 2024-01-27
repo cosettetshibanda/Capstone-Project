@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { TopicContext } from "../../Context/TopicContext"
 import { UsersContext } from "../../Context/UsersContext"
-import { useNavigate } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import EditQuestion from "../Questions/EditQuestion"
 
 
@@ -33,6 +33,17 @@ function TopicQuestions ({question}){
             console.error('Error deleting question:', error);
           });
       };
+
+      const handleAddAnswerNav = () => {
+        navigate(`/add-answers/${question.id}`)
+      }
+
+      const handleViewAnswerNav = () => {
+        navigate(`/view-answers/${question.id}`)
+      }
+
+
+
     // const handleEditChange = (e) => {
     //     const { name, value } = e.target;
     //     setUpdateQuestion({ ...updateQuestion, [name]: value });
@@ -76,6 +87,9 @@ console.log(question)
               <>
                 <button onClick={toggleEditForm}>Edit</button>
                 <button onClick={handleDeleteClick}>Delete</button> 
+                <button onClick={handleAddAnswerNav}>Answer Question</button>
+                <button onClick={handleViewAnswerNav}>View Answers</button>
+                {/* <NavLink to={`/question/${question.id}`}>Answer Question</NavLink> */}
               </>
             ) : null
           )}

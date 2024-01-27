@@ -22,6 +22,7 @@ function App() {
           <Route path="/signup" element={<SignUpForm />} /> 
           <Route path="/login" element={<Login/>} />
           <Route path="/topic/:topic_id" element={<TopicCard />} />
+          
         </Routes>
       </TopicProvider>
     </UsersProvider>

@@ -1,9 +1,13 @@
-import {useEffect, useState} from "react"
+import { useState } from "react"
 
-function QuestionForm({params, topic}){
+
+function AnswerForm(){
+
+    const question = questions.find((question) => question.id === parseInt(params.question_id))
+
     const [formData, setFormData] = useState({
-        post: "",
-        topic_id: params.id
+        answer: "",
+        question_id: params.id
     })
 
 
@@ -17,16 +21,16 @@ function QuestionForm({params, topic}){
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const newQuestion = {
+        const newAnswer = {
             ...formData
         }
     
-        fetch ("/questions", {
+        fetch ("/answers", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(newQuestion)
+            body: JSON.stringify(newAnswer)
         })
         .then(r => r.json())
         .then(data => {
@@ -34,16 +38,15 @@ function QuestionForm({params, topic}){
             // handleAddQuestion(data)
         })
         setFormData({
-            post: ""
+            answer: ""
         })
     }
  
-    console.log(topic)
     return(
-    <div className="NewQuestion" >
+    <div className="NewAnswer" >
         <h3>You selected the {topic} topic to add new question to.</h3>
         <form onSubmit={handleSubmit}>
-            <input value={formData.post}  type="text" name="post" placeholder="Post" onChange={handleChange} />
+            <input value={formData.answer}  type="text" name="answer" placeholder="Post" onChange={handleChange} />
             <button type="submit">Add Question</button>
         </form>
        
@@ -51,4 +54,4 @@ function QuestionForm({params, topic}){
     )
 }
 
-export default QuestionForm
+export default AnswerForm

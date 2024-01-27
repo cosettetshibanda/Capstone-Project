@@ -2,11 +2,13 @@ import { useContext, useState } from "react"
 import { UsersContext } from "../../Context/UsersContext"
 import EditQuestion from "./EditQuestion"
 import { useNavigate } from "react-router-dom"
+import { TopicContext } from "../../Context/TopicContext"
 
 
 function QuestionCard({question}) {
     const {currentUser} = useContext(UsersContext)
-    const [showEditForm, setShowEditForm] = useState
+    const {handleDeleteQuestion} = useContext(TopicContext) 
+    const [showEditForm, setShowEditForm] = useState(false)
     const navigate = useNavigate()
 
     const toggleEditForm = () => {
@@ -20,6 +22,19 @@ function QuestionCard({question}) {
       const handleViewAnswerNav = () => {
         navigate(`/view-answers/${question.id}`)
       }
+
+      const handleDeleteClick = () => {
+        fetch(`/questions/${question.id}`, {
+          method: "DELETE",
+        })
+          .then(() => {
+            handleDeleteQuestion(question);
+          })
+          .catch((error) => {
+            console.error('Error deleting question:', error);
+          });
+      };
+
 
 
    return (

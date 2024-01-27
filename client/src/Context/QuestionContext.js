@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { UsersContext } from "./UsersContext"
 import { useNavigate } from "react-router-dom"
 
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 const QuestionContext = createContext(null)
 
 const QuestionProvider = ({children}) => {
-    const [question, setQuestions] = useState([])
+    const [questions, setQuestions] = useState([])
     const {loggedIn} = useContext(UsersContext)
     const navigate = useNavigate()
 
@@ -23,7 +23,7 @@ const QuestionProvider = ({children}) => {
     
 
     const handleAddQuestion = (newQuestion) => {
-        setQuestion([...question, newQuestion])
+        setQuestions([...questions, newQuestion])
     }
 
     
@@ -66,8 +66,8 @@ const QuestionProvider = ({children}) => {
 
 
     return(
-        <TopicContext.Provider value={{questions, setQuestions, handleAddQuestion}}>{children}</TopicContext.Provider>
+        <QuestionContext.Provider value={{questions, setQuestions, handleAddQuestion}}>{children}</QuestionContext.Provider>
     )
 }
 
-export {TopicContext, TopicProvider}
+export {QuestionContext, QuestionProvider}

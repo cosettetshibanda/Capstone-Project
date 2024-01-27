@@ -1,7 +1,11 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { QuestionContext } from "../../Context/QuestionContext"
+import { useParams } from "react-router-dom"
 
 
 function AnswerForm(){
+    const params = useParams()
+    const {questions} = useContext(QuestionContext)
 
     const question = questions.find((question) => question.id === parseInt(params.question_id))
 
@@ -44,10 +48,10 @@ function AnswerForm(){
  
     return(
     <div className="NewAnswer" >
-        <h3>You selected the {topic} topic to add new question to.</h3>
+        <h3>{question.post}</h3>
         <form onSubmit={handleSubmit}>
             <input value={formData.answer}  type="text" name="answer" placeholder="Post" onChange={handleChange} />
-            <button type="submit">Add Question</button>
+            <button type="submit">Add Answer</button>
         </form>
        
     </div>

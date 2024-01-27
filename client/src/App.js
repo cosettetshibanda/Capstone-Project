@@ -8,6 +8,8 @@ import Home from './Components/Home';
 import { TopicProvider } from './Context/TopicContext';
 import TopicCard from './Components/Topics/TopicCard';
 import AnswerForm from './Components/Answers/AnswerForm';
+import QuestionForm from './Components/Questions/QuestionForm';
+import { QuestionProvider } from './Context/QuestionContext';
 
 
 function App() {
@@ -17,15 +19,17 @@ function App() {
    <main>
     <UsersProvider >
       <TopicProvider >
-        <NavBar />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/signup" element={<SignUpForm />} /> 
-          <Route path="/login" element={<Login/>} />
-          <Route path="/topic/:topic_id" element={<TopicCard />} />
-          <Route path="/add-answers/:question_id" element={<AnswerForm />} />
-          <Route path="/view-answers/:question_id" element={<TopicCard />} />
-        </Routes>
+        <QuestionProvider>
+          <NavBar />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/signup" element={<SignUpForm />} /> 
+            <Route path="/login" element={<Login/>} />
+            <Route path="/topic/:topic_id" element={<TopicCard />} />
+            <Route path="/add-answers/:question_id" element={<AnswerForm />} />
+            <Route path="/view-answers/:question_id" element={<TopicCard />} />
+          </Routes>
+        </QuestionProvider>
       </TopicProvider>
     </UsersProvider>
    </main>

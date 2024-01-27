@@ -35,35 +35,15 @@ function QuestionList() {
 
 
     const questionItems = questions.map((question) => (
-        <div>
-
-            <li>
-                {question.post}
-            </li>
-            {/* {showEditForm ? (
-                <EditQuestion
-              question={question}
-              toggleEditForm={toggleEditForm}
-            //   handleEditReview={handleEditReview}
-            />
-          ) : (
-             currentUser && currentUser.id === question.user_id ? (
-              <>
-                <button onClick={toggleEditForm}>Edit</button>
-                <button onClick={handleDeleteClick}>Delete</button>  */}
-                {/* <button onClick={handleAddAnswerNav}>Answer Question</button>
-                <button onClick={handleViewAnswerNav}>View Answers</button> */}
-                {/* <NavLink to={`/question/${question.id}`}>Answer Question</NavLink> */}
-              {/* </>
-            ) : null
-          )} */}
+        <QuestionCard key={question.id} question={question} />
         
-        </div>
+       
     ));
     return (
         <>
             {errorsList}
             <h3>Questions</h3>
+            <p>Pick a topic to add a question.</p>
             <div id="question-list">{questionItems}</div>
         </>
     )

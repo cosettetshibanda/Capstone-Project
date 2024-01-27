@@ -70,7 +70,7 @@ function TopicQuestions ({question}){
       const toggleEditForm = () => {
         setShowEditForm(!showEditForm);
       };
-console.log(question)
+
     return (
         <>
             {errors}

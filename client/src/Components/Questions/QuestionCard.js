@@ -39,26 +39,25 @@ function QuestionCard({question}) {
 
    return (
     <figure>
-                    <li>{question.post} </li>
-                {showEditForm ? (
-                <EditQuestion
-              question={question}
-              toggleEditForm={toggleEditForm}
+        <li>{question.post} </li>
+        {showEditForm ? (
+            <EditQuestion
+            question={question}
+            toggleEditForm={toggleEditForm}
             //   handleEditReview={handleEditReview}
             />
           ) : (
-             currentUser && currentUser.id === question.user_id ? (
-              <>
-                <button onClick={toggleEditForm}>Edit</button>
-                <button onClick={handleDeleteClick}>Delete</button> 
-                <button onClick={handleAddAnswerNav}>Answer Question</button>
-                <button onClick={handleViewAnswerNav}>View Answers</button>
-                {/* <NavLink to={`/question/${question.id}`}>Answer Question</NavLink> */}
-              </>
-            ) : null
-          )}
+        currentUser && currentUser.id === question.user_id ? (
+          <>
+            <button onClick={toggleEditForm}>Edit</button>
+            <button onClick={handleDeleteClick}>Delete</button> 
+            <button onClick={handleAddAnswerNav}>Answer Question</button>
+            <button onClick={handleViewAnswerNav}>View Answers</button>
+          </>
+        ) : null
+        )}
           
-          </figure>
+        </figure>
    )
 }
 

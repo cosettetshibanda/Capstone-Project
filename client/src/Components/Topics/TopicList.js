@@ -34,6 +34,7 @@ function TopicList() {
     return (
         <>
             {errorsList}
+            <h3>Topics</h3>
             <div id="topic-list">{topicItems}</div>
         </>
     )

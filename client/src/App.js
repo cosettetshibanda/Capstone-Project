@@ -8,8 +8,8 @@ import Home from './Components/Home';
 import { TopicProvider } from './Context/TopicContext';
 import TopicCard from './Components/Topics/TopicCard';
 import AnswerForm from './Components/Answers/AnswerForm';
-import QuestionForm from './Components/Questions/QuestionForm';
 import { QuestionProvider } from './Context/QuestionContext';
+import QuestionAnswers from './Components/Answers/QuestionAnswers';
 
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/topic/:topic_id" element={<TopicCard />} />
             <Route path="/add-answers/:question_id" element={<AnswerForm />} />
-            <Route path="/view-answers/:question_id" element={<TopicCard />} />
+            <Route path="/view-answers/:question_id" element={<QuestionAnswers />} />
           </Routes>
         </QuestionProvider>
       </TopicProvider>

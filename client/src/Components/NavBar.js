@@ -23,7 +23,9 @@ function NavBar() {
             <li><Link to="/carseats/new">Add Car Seat</Link></li>
             <li><Link to="mycarseats">My Car Seats</Link></li>  */}
             <li><Link to="#" onClick={handleLogoutClick}>Logout</Link></li>
+            <br></br>
             <TopicForm />
+            <br></br>
             <TopicList />
 
           </>

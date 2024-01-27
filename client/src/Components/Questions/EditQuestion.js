@@ -4,10 +4,10 @@ import { UsersContext } from "../../Context/UsersContext"
 import { useNavigate } from "react-router-dom"
 
 
-function EditQuestion({question}) {
+function EditQuestion({question, toggleEditForm}) {
     const {id} = question
     const [errors, setErrors] = useState("")
-    const [updateQuestion, setUpdateQuestion] = useState("")
+    const [updateQuestion, setUpdateQuestion] = useState(question)
     const {handleDeleteQuestion, handleUpdateQuestion} = useContext(TopicContext)
     const {loggedIn} = useContext(UsersContext)
     const navigate = useNavigate()
@@ -45,24 +45,26 @@ function EditQuestion({question}) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({post: updateQuestion}),
+          body: JSON.stringify({updateQuestion}),
         })
-          .then((r) => r.json())
-          .then((updatedQuestion) => handleUpdateQuestion(updatedQuestion))
-          setUpdateQuestion("")
+        .then((r) => r.json())
+        .then((updatedQuestion) => {
+          handleUpdateQuestion(updatedQuestion);
+          toggleEditForm()
+        })
       }
 
       return (
         <div>
             {errors}
             <form onSubmit={handleSubmit}>
-                <input value={question.post} type="" name="post" onChange={handleEditChange} />
+                <input value={updateQuestion.post} type="text" name="post" onChange={handleEditChange} />
                 <button type="submit">Edit</button>
             </form>
             <button className="del-btn" onClick={handleDeleteClick} >
             🗑️
             </button>
-            <button></button>
+            
         </div>
 
       )

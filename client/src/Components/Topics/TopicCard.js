@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { TopicContext } from "../../Context/TopicContext";
 import { useContext, useEffect, useState } from "react";
 import TopicQuestions from "./TopicQuestions";
+import QuestionForm from "../Questions/QuestionForm";
 
 
 
@@ -34,6 +35,7 @@ function TopicCard (){
     return(
         <div>
             <div id="Question-List">{questions}</div>
+            <QuestionForm params={params} />
         </div>
     )
 

@@ -8,8 +8,8 @@ import EditQuestion from "../Questions/EditQuestion"
 function TopicQuestions ({question}){
     const [showEditForm, setShowEditForm] = useState(false)
     const [errors, setErrors] = useState("")
-    const [updateQuestion, setUpdateQuestion] = useState("")
-    const {handleDeleteQuestion, handleUpdateQuestion} = useContext(TopicContext)
+    // const [updateQuestion, setUpdateQuestion] = useState("")
+    const {handleDeleteQuestion} = useContext(TopicContext)
     const {loggedIn, currentUser} = useContext(UsersContext)
     const navigate = useNavigate()
 
@@ -32,26 +32,26 @@ function TopicQuestions ({question}){
         })
     }
 
-    const handleEditChange = (e) => {
-        const { name, value } = e.target;
-        setUpdateQuestion({ ...updateQuestion, [name]: value });
-      };
+    // const handleEditChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setUpdateQuestion({ ...updateQuestion, [name]: value });
+    //   };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
     
-        fetch(`/questions/${question.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({post: updateQuestion}),
-        })
-          .then((r) => r.json())
-          .then((updatedQuestion) => handleUpdateQuestion(updatedQuestion))
-          setUpdateQuestion("")
-      }
-
+    //     fetch(`/questions/${question.id}`, {
+    //       method: "PATCH",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify({post: updateQuestion}),
+    //     })
+    //       .then((r) => r.json())
+    //       .then((updatedQuestion) => handleUpdateQuestion(updatedQuestion))
+    //       setUpdateQuestion("")
+    //   }
+console.log(currentUser)
       const findUsername = () => {
         if (currentUser.id === question.user_id){
           return currentUser.username
@@ -59,6 +59,7 @@ function TopicQuestions ({question}){
           return null
         }
       }
+
 
       const toggleEditForm = () => {
         setShowEditForm(!showEditForm);

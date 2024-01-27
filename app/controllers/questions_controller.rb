@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-    before_action :review_find, only: [:update, :destroy]
+    before_action :question_find, only: [:update, :destroy]
 
 
     def index
@@ -17,7 +17,7 @@ class QuestionsController < ApplicationController
     end
 
     def update
-        @question.update(question_params)
+        @question.update!(question_params)
         render json: @question, status: :ok
     end
 
@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
       @question = @current_user.questions.find(params[:id])
     end
 
-    def review_params
-        params.require(:question).permit(:post, :topic_id)
+    def question_params
+        params.require(:question).permit(:post, :id, :topic.id)
     end
 end

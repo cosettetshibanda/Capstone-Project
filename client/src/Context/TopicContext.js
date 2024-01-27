@@ -28,7 +28,7 @@ const TopicProvider = ({children}) => {
 
 
     function handleDeleteQuestion(question) {
-        const topic = topics.find((topic) => topic.id === question.topic_id)
+        const topic = topics.find((topic) => topic.id === question.topic.id)
         const updatedQuestions = topic.questions.filter((q) => q.id !==question.id)
         const updatedTopics = topics.map((t) => t.id === topic.id ? {...topic, questions: updatedQuestions} : t)
 
@@ -36,12 +36,31 @@ const TopicProvider = ({children}) => {
     }
 
     function handleUpdateQuestion(updatedQuestion) {
-        const topic = topics.find((topic) => topic.id === updatedQuestion.topic_id)
-        const updatedQuestions = topic.questions.map((question) => question.id === updatedQuestion.id ? updatedQuestion : question)
-        const updatedTopics = topics.map((t) => t.id === topic.id ? {...topic, questions: updatedQuestions} : t)
+        const topic = topics.find((topic) => topic.id === updatedQuestion.topic.id);
+      
+        // Check if topic is found
+        if (!topic) {
+          console.error(`Topic with id ${updatedQuestion.topic_id} not found.`);
+          return;
+        }
+      
+        const updatedQuestions = topic.questions.map((question) =>
+          question.id === updatedQuestion.id ? updatedQuestion : question
+        );
+      
+        const updatedTopics = topics.map((t) =>
+          t.id === topic.id ? { ...topic, questions: updatedQuestions } : t
+        );
+      
+        setTopics(updatedTopics);
+      }
+    // function handleUpdateQuestion(updatedQuestion) {
+    //     const topic = topics.find((topic) => topic.id === updatedQuestion.topic_id)
+    //     const updatedQuestions = topic.questions.map((question) => question.id === updatedQuestion.id ? updatedQuestion : question)
+    //     const updatedTopics = topics.map((t) => t.id === topic.id ? {...topic, questions: updatedQuestions} : t)
 
-        setTopics(updatedTopics)
-    }
+    //     setTopics(updatedTopics)
+    // }
 
 
 

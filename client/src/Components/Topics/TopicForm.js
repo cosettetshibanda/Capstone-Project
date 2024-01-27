@@ -42,7 +42,7 @@ function TopicForm(){
                     value={topic} 
                     type="text" 
                     name="topic" 
-                    placeholder="Topic name" />
+                    placeholder="Topic Name" />
                 <button 
                     type="submit"
                     >Add Topic</button>

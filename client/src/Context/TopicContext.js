@@ -26,6 +26,7 @@ const TopicProvider = ({children}) => {
         setTopics([...topics, newTopic])
     }
 
+    
 
     function handleDeleteQuestion(question) {
         const topic = topics.find((topic) => topic.id === question.topic.id)

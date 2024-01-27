@@ -24,14 +24,15 @@ function TopicQuestions ({question}){
 
     const handleDeleteClick = () => {
         fetch(`/questions/${question.id}`, {
-        method: "DELETE",
+          method: "DELETE",
         })
-        .then(r => r.json())
-        .then(() => {
-            handleDeleteQuestion(question)
-        })
-    }
-
+          .then(() => {
+            handleDeleteQuestion(question);
+          })
+          .catch((error) => {
+            console.error('Error deleting question:', error);
+          });
+      };
     // const handleEditChange = (e) => {
     //     const { name, value } = e.target;
     //     setUpdateQuestion({ ...updateQuestion, [name]: value });
@@ -51,29 +52,19 @@ function TopicQuestions ({question}){
     //       .then((updatedQuestion) => handleUpdateQuestion(updatedQuestion))
     //       setUpdateQuestion("")
     //   }
-console.log(currentUser)
-      const findUsername = () => {
-        if (currentUser.id === question.user_id){
-          return currentUser.username
-        } else {
-          return null
-        }
-      }
+
+
 
 
       const toggleEditForm = () => {
         setShowEditForm(!showEditForm);
       };
-
+console.log(question)
     return (
         <>
             {errors}
             <figure>
-                {findUsername ? (
-                    <li>{question.post} - {findUsername.username}</li>
-                    ) : (
-                    <li>{question.post} - No username found</li>
-                    )}
+                    <li>{question.post} </li>
                 {showEditForm ? (
                 <EditQuestion
               question={question}

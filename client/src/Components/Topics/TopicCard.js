@@ -34,8 +34,8 @@ function TopicCard (){
 
     return(
         <div>
-            <div id="Question-List">{questions}</div>
             <QuestionForm params={params} topic={selectedTopic.topic} />
+            <div id="Question-List">{questions}</div>
         </div>
     )
 

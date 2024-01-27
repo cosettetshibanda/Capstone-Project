@@ -26,6 +26,8 @@ function NavBar() {
             <br></br>
             <TopicForm />
             <br></br>
+            <li><Link to="/questions" >All Questions</Link></li>
+            <br></br>
             <TopicList />
 
           </>

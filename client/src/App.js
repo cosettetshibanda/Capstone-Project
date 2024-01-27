@@ -10,6 +10,7 @@ import TopicCard from './Components/Topics/TopicCard';
 import AnswerForm from './Components/Answers/AnswerForm';
 import { QuestionProvider } from './Context/QuestionContext';
 import QuestionAnswers from './Components/Answers/QuestionAnswers';
+import QuestionList from './Components/Questions/QuestionList';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route path="/signup" element={<SignUpForm />} /> 
             <Route path="/login" element={<Login/>} />
+            <Route path="/questions" element={<QuestionList/>} />
             <Route path="/topic/:topic_id" element={<TopicCard />} />
             <Route path="/add-answers/:question_id" element={<AnswerForm />} />
             <Route path="/view-answers/:question_id" element={<QuestionAnswers />} />

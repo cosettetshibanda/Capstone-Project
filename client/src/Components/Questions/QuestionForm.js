@@ -1,10 +1,9 @@
-import {useState} from "react"
+import {useEffect, useState} from "react"
 
-function QuestionFormForm({params, handleAddAnimal}){
+function QuestionForm({params, topic}){
     const [formData, setFormData] = useState({
-        name: "",
-        img: "",
-        category_id: params.id
+        post: "",
+        topic_id: params.id
     })
 
 
@@ -18,35 +17,37 @@ function QuestionFormForm({params, handleAddAnimal}){
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        const newAnimal = {
+        const newQuestion = {
             ...formData
         }
     
-        fetch ("http://localhost:9292/animals", {
+        fetch ("/questions", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(newAnimal)
+            body: JSON.stringify(newQuestion)
         })
         .then(r => r.json())
         .then(data => {
 
-            handleAddAnimal(data)
+            // handleAddQuestion(data)
         })
         setFormData({
             name: "",
             img: ""
         })
     }
-
+ 
+    console.log(topic)
     return(
-        <div className="NewAnimal" >
-        <h2>Add New Question</h2>
+    <div className="NewQuestion" >
+        <h3>You selected the {topic} topic to add new question to.</h3>
         <form onSubmit={handleSubmit}>
-            <input value={formData.name}  type="text" name="name" placeholder="Post" onChange={handleChange} />
+            <input value={formData.post}  type="text" name="name" placeholder="Post" onChange={handleChange} />
             <button type="submit">Add Question</button>
         </form>
+       
     </div>
     )
 }

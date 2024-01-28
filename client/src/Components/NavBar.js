@@ -7,9 +7,12 @@ import TopicForm from "./Topics/TopicForm";
 
 
 
+
 function NavBar() {
 
-    const {loggedIn, logoutUser} = useContext(UsersContext)
+    const {loggedIn, logoutUser, currentUser} = useContext(UsersContext)
+  
+
 
     const handleLogoutClick = () => {
         fetch("/logout", {method: "DELETE"})
@@ -27,6 +30,7 @@ function NavBar() {
             <TopicForm />
             <br></br>
             <li><Link to="/questions" >All Questions</Link></li>
+            <li><Link to={`/${currentUser.username}s/questions`} >My Questions</Link></li>
             <br></br>
             <TopicList />
 

@@ -11,6 +11,7 @@ import AnswerForm from './Components/Answers/AnswerForm';
 import { QuestionProvider } from './Context/QuestionContext';
 import QuestionAnswers from './Components/Answers/QuestionAnswers';
 import QuestionList from './Components/Questions/QuestionList';
+import UsersQuestions from './Components/Questions/UsersQuestions';
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
             <Route path="/topic/:topic_id" element={<TopicCard />} />
             <Route path="/add-answers/:question_id" element={<AnswerForm />} />
             <Route path="/view-answers/:question_id" element={<QuestionAnswers />} />
+            <Route path="/:currentUser_username/:questions" element={<QuestionAnswers />} />
+            <Route path="/question/:question_id" element={<UsersQuestions />} />
           </Routes>
         </QuestionProvider>
       </TopicProvider>

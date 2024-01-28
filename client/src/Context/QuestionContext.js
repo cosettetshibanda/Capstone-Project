@@ -20,6 +20,7 @@ const QuestionProvider = ({children}) => {
     
     useEffect(loadQuestions, [loggedIn, navigate])
 
+    console.log(questions)
     
 
     const handleAddQuestion = (newQuestion) => {

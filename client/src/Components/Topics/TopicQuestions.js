@@ -87,12 +87,12 @@ function TopicQuestions ({question}){
               <>
                 <button onClick={toggleEditForm}>Edit</button>
                 <button onClick={handleDeleteClick}>Delete</button> 
-                <button onClick={handleAddAnswerNav}>Answer Question</button>
-                <button onClick={handleViewAnswerNav}>View Answers</button>
                 {/* <NavLink to={`/question/${question.id}`}>Answer Question</NavLink> */}
               </>
             ) : null
-          )}
+            )}
+            <button onClick={handleAddAnswerNav}>Answer Question</button>
+            <button onClick={handleViewAnswerNav}>View Answers</button>
           
           </figure>
         </>

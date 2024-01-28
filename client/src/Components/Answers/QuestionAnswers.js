@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { UsersContext } from "../../Context/UsersContext"
+import TopicQuestions from "../Topics/TopicQuestions"
 
 
 function QuestionAnswers () {
@@ -19,9 +20,10 @@ function QuestionAnswers () {
 
     const myQuestions = currentUser?.questions ? (
         currentUser.questions.map((question) => (
-            <li key={question.id}>
-            <Link to={`/questions/${question.id}`}>{question.post}</Link>
-          </li>
+            <TopicQuestions key={question.id} question={question} />
+        //     <li key={question.id}>
+        //     <Link to={`/questions/${question.id}`}>{question.post}</Link>
+        //   </li>
         ))
     ) : null
 

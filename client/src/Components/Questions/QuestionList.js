@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { QuestionContext } from "../../Context/QuestionContext";
 import { UsersContext } from "../../Context/UsersContext";
 import QuestionCard from "./QuestionCard";
+import TopicQuestions from "../Topics/TopicQuestions";
 
 
 function QuestionList() {
@@ -35,7 +36,7 @@ function QuestionList() {
 
 
     const questionItems = questions.map((question) => (
-        <QuestionCard key={question.id} question={question} />
+        <TopicQuestions key={question.id} question={question} />
         
        
     ));

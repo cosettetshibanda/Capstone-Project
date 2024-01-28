@@ -37,8 +37,9 @@ const TopicProvider = ({children}) => {
     }
 
     function handleUpdateQuestion(updatedQuestion) {
+        console.log(updatedQuestion)
         const topic = topics.find((topic) => topic.id === updatedQuestion.topic.id);
-      
+        console.log(topic)
         // Check if topic is found
         if (!topic) {
           console.error(`Topic with id ${updatedQuestion.topic_id} not found.`);

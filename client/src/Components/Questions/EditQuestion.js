@@ -39,13 +39,13 @@ function EditQuestion({question, toggleEditForm}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+    console.log(updateQuestion)
         fetch(`/questions/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({updateQuestion}),
+          body: JSON.stringify(updateQuestion),
         })
         .then((r) => r.json())
         .then((updatedQuestion) => {

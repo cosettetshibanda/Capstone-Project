@@ -3,6 +3,7 @@ import { TopicContext } from "../../Context/TopicContext"
 import { UsersContext } from "../../Context/UsersContext"
 import { NavLink, useNavigate } from "react-router-dom"
 import EditQuestion from "../Questions/EditQuestion"
+import { QuestionContext } from "../../Context/QuestionContext"
 
 
 function TopicQuestions ({question}){
@@ -10,7 +11,8 @@ function TopicQuestions ({question}){
     const [errors, setErrors] = useState("")
     // const [updateQuestion, setUpdateQuestion] = useState("")
     const {handleDeleteQuestion} = useContext(TopicContext)
-    const {loggedIn, currentUser} = useContext(UsersContext)
+    const {deleteQuestion} = useContext(QuestionContext)
+    const {loggedIn, currentUser, deleteUserQuestion} = useContext(UsersContext)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -28,6 +30,8 @@ function TopicQuestions ({question}){
         })
           .then(() => {
             handleDeleteQuestion(question);
+            deleteUserQuestion(question)
+            deleteQuestion(question)
           })
           .catch((error) => {
             console.error('Error deleting question:', error);

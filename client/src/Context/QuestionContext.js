@@ -27,6 +27,26 @@ const QuestionProvider = ({children}) => {
         setQuestions([...questions, newQuestion])
     }
 
+    const editQuestion = (updatedQuestion) => {
+        setQuestions(prevQuestions => {
+          const updatedQuestions = prevQuestions.map((question) => {
+            if (question.id === updatedQuestion.id) {
+              return updatedQuestion;
+            } else {
+              return question;
+            }
+          });
+          return [...updatedQuestions];  // Use spread operator here
+        });
+      };
+
+      const deleteQuestion = (deletedQuestion) => {
+        setQuestions(prevQuestions => {
+          const editedQuestions = prevQuestions.filter((question) => question.id !== deletedQuestion.id);
+          return [...editedQuestions];  // Use spread operator here
+        });
+      };
+
     
     
 
@@ -68,7 +88,7 @@ const QuestionProvider = ({children}) => {
 
 
     return(
-        <QuestionContext.Provider value={{questions, setQuestions, handleNewQuestion}}>{children}</QuestionContext.Provider>
+        <QuestionContext.Provider value={{deleteQuestion, editQuestion, questions, setQuestions, handleNewQuestion}}>{children}</QuestionContext.Provider>
     )
 }
 

@@ -42,10 +42,10 @@ const UsersProvider = ({ children }) => {
       }
 
   
-    //   const removeCarSeatRev = (deletedReview) => {
-    //     const editedCarSeats = currentUser.carseats.filter((carseat) => carseat.id !== deletedReview.id)
-    //     setCurrentUser((prevState) => ({...prevState, carseats: editedCarSeats}))
-    //   }
+      const deleteUserQuestion = (deletedQuestion) => {
+        const editedQuestions = currentUser.questions.filter((question) => question.id !== deletedQuestion.id)
+        setCurrentUser((prevState) => ({...prevState, questions: editedQuestions}))
+      }
 
      
 
@@ -64,7 +64,7 @@ const UsersProvider = ({ children }) => {
 
   
       return(
-          <UsersContext.Provider value={{ updateUserQuestion, addUserQuestion, loginUser, logoutUser, loggedIn, currentUser, setCurrentUser }}>{ children }</UsersContext.Provider>
+          <UsersContext.Provider value={{ deleteUserQuestion, updateUserQuestion, addUserQuestion, loginUser, logoutUser, loggedIn, currentUser, setCurrentUser }}>{ children }</UsersContext.Provider>
       )
   
    }

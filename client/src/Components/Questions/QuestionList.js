@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { QuestionContext } from "../../Context/QuestionContext";
 import { UsersContext } from "../../Context/UsersContext";
-import QuestionCard from "./QuestionCard";
+// import QuestionCard from "./QuestionCard";
 import TopicQuestions from "../Topics/TopicQuestions";
 
 

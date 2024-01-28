@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { TopicContext } from "../../Context/TopicContext"
 import { UsersContext } from "../../Context/UsersContext"
 import { useNavigate } from "react-router-dom"
+import { QuestionContext } from "../../Context/QuestionContext"
 
 
 function EditQuestion({question, toggleEditForm}) {
@@ -9,8 +10,8 @@ function EditQuestion({question, toggleEditForm}) {
     const [errors, setErrors] = useState("")
     const [updateQuestion, setUpdateQuestion] = useState(question)
     const {handleDeleteQuestion, handleUpdateQuestion} = useContext(TopicContext)
-    const {updateUserQuestion} = useContext(UsersContext)
-    const {loggedIn} = useContext(UsersContext)
+    const {updateUserQuestion, loggedIn} = useContext(UsersContext)
+    const {editQuestion} = useContext(QuestionContext)
     const navigate = useNavigate()
 
 
@@ -52,6 +53,7 @@ function EditQuestion({question, toggleEditForm}) {
         .then((updatedQuestion) => {
           handleUpdateQuestion(updatedQuestion);
           updateUserQuestion(updatedQuestion)
+          editQuestion(updateQuestion)
           toggleEditForm()
         })
       }

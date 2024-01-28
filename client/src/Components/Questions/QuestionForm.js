@@ -1,25 +1,33 @@
-import {useEffect, useState} from "react"
+import {useContext, useEffect, useState} from "react"
+import { TopicContext } from "../../Context/TopicContext"
+import { UsersContext } from "../../Context/UsersContext"
+import { QuestionContext } from "../../Context/QuestionContext"
 
 function QuestionForm({params, topic}){
+    const {handleAddQuestion} = useContext(TopicContext)
+    const {addUserQuestion} = useContext(UsersContext)
+    const {handleNewQuestion} = useContext(QuestionContext)
+
     const [formData, setFormData] = useState({
         post: "",
-        topic_id: params.id
-    })
+        topic_id: parseInt(params.topic_id, 10) || 0 
+    });
 
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name] :e.target.value
-        })
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [e.target.name]: e.target.name === "topic_id" ? parseInt(e.target.value, 10) || 0 : e.target.value
+        }));
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault()
-
+        e.preventDefault();
+    
         const newQuestion = {
-            ...formData
-        }
+            post: formData.post,
+            topic_id: formData.topic_id
+        };
     
         fetch ("/questions", {
             method: "POST",
@@ -31,14 +39,16 @@ function QuestionForm({params, topic}){
         .then(r => r.json())
         .then(data => {
 
-            // handleAddQuestion(data)
-        })
-        setFormData({
-            post: ""
+            handleAddQuestion(data)
+            addUserQuestion(data)
+            handleNewQuestion(data)
+            setFormData({
+                post: ""
+            })
         })
     }
  
-    console.log(topic)
+
     return(
     <div className="NewQuestion" >
         <h3>You selected the {topic} topic to add new question to.</h3>

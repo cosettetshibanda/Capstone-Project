@@ -37,9 +37,9 @@ const UsersProvider = ({ children }) => {
     //     setCurrentUser((prevState) => ({...prevState, carseats: [carseat, ...currentUser.carseats]}))
     //   }
 
-    //   const addCarSeatRev = (newReview) => {
-    //     setCurrentUser((prevState) => ({...prevState, carseats: [...currentUser.carseats, newReview]}))
-    //   }
+      const addUserQuestion = (newQuestion) => {
+        setCurrentUser((prevState) => ({...prevState, questions: [...currentUser.questions, newQuestion]}))
+      }
 
   
     //   const removeCarSeatRev = (deletedReview) => {
@@ -64,7 +64,7 @@ const UsersProvider = ({ children }) => {
 
   
       return(
-          <UsersContext.Provider value={{ loginUser, logoutUser, loggedIn, currentUser, setCurrentUser }}>{ children }</UsersContext.Provider>
+          <UsersContext.Provider value={{ addUserQuestion, loginUser, logoutUser, loggedIn, currentUser, setCurrentUser }}>{ children }</UsersContext.Provider>
       )
   
    }

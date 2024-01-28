@@ -20,10 +20,10 @@ const QuestionProvider = ({children}) => {
     
     useEffect(loadQuestions, [loggedIn, navigate])
 
-    console.log(questions)
+
     
 
-    const handleAddQuestion = (newQuestion) => {
+    const handleNewQuestion = (newQuestion) => {
         setQuestions([...questions, newQuestion])
     }
 
@@ -67,7 +67,7 @@ const QuestionProvider = ({children}) => {
 
 
     return(
-        <QuestionContext.Provider value={{questions, setQuestions, handleAddQuestion}}>{children}</QuestionContext.Provider>
+        <QuestionContext.Provider value={{questions, setQuestions, handleNewQuestion}}>{children}</QuestionContext.Provider>
     )
 }
 

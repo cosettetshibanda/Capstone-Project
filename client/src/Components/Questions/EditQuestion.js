@@ -9,6 +9,7 @@ function EditQuestion({question, toggleEditForm}) {
     const [errors, setErrors] = useState("")
     const [updateQuestion, setUpdateQuestion] = useState(question)
     const {handleDeleteQuestion, handleUpdateQuestion} = useContext(TopicContext)
+    const {updateUserQuestion} = useContext(UsersContext)
     const {loggedIn} = useContext(UsersContext)
     const navigate = useNavigate()
 
@@ -50,6 +51,7 @@ function EditQuestion({question, toggleEditForm}) {
         .then((r) => r.json())
         .then((updatedQuestion) => {
           handleUpdateQuestion(updatedQuestion);
+          updateUserQuestion(updatedQuestion)
           toggleEditForm()
         })
       }

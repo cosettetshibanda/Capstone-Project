@@ -49,22 +49,22 @@ const UsersProvider = ({ children }) => {
 
      
 
-    //   const updateUserRev = (updatedRev) => {
-    //     const updatedReviews = currentUser.reviews.map((review) => {
-    //       if(review.id === updatedRev.id) {
-    //         return updatedRev
-    //       } else {
-    //         return review
-    //       }
-    //     })
-    //     setCurrentUser(prevState => ({...prevState, reviews: updatedReviews}))
-    //   }
+      const updateUserQuestion = (updatedQuestion) => {
+        const updatedQuestions = currentUser.questions.map((question) => {
+          if(question.id === updatedQuestion.id) {
+            return updatedQuestion
+          } else {
+            return question
+          }
+        })
+        setCurrentUser(prevState => ({...prevState, questions: updatedQuestions}))
+      }
     
   
 
   
       return(
-          <UsersContext.Provider value={{ addUserQuestion, loginUser, logoutUser, loggedIn, currentUser, setCurrentUser }}>{ children }</UsersContext.Provider>
+          <UsersContext.Provider value={{ updateUserQuestion, addUserQuestion, loginUser, logoutUser, loggedIn, currentUser, setCurrentUser }}>{ children }</UsersContext.Provider>
       )
   
    }

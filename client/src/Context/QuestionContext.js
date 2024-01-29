@@ -47,7 +47,18 @@ const QuestionProvider = ({children}) => {
         });
       };
 
-    
+      function handleAddAnswer(newAnswer) {
+        const question = newAnswer.question ? questions.find((q) => q.id === newAnswer.question.id) : null;
+  
+        if (!question) {
+          return; 
+        }
+        const updatedAnswers = [...question.answers, newAnswer];
+        const updatedQuestions = questions.map((q) =>
+          q.id === question.id ? { ...question, answers: updatedAnswers } : q
+        );
+        setQuestions(updatedQuestions);
+      }
     
 
     // function handleDeleteQuestion(question) {
@@ -88,7 +99,7 @@ const QuestionProvider = ({children}) => {
 
 
     return(
-        <QuestionContext.Provider value={{deleteQuestion, editQuestion, questions, setQuestions, handleNewQuestion}}>{children}</QuestionContext.Provider>
+        <QuestionContext.Provider value={{handleAddAnswer, deleteQuestion, editQuestion, questions, setQuestions, handleNewQuestion}}>{children}</QuestionContext.Provider>
     )
 }
 

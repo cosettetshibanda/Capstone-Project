@@ -58,32 +58,18 @@ const TopicProvider = ({children}) => {
       }
 
       function handleAddQuestion(newQuestion) {
-        // Log the current state of topics
-    
-      console.log(newQuestion)
-        // Find the topic associated with the new question
         const topic = newQuestion.topic ? topics.find((t) => t.id === newQuestion.topic.id) : null;
-        console.log(topic)
-      
+  
         if (!topic) {
-          console.warn(`No topic found with id ${newQuestion.topic_id}`);
-          return; // Exit the function if no matching topic is found
+          return; 
         }
-      
-        // Log the found topic
-        console.log('Found topic:', topic);
-      
-        // Create a new array of questions including the new question
         const updatedQuestions = [...topic.questions, newQuestion];
-      
-        // Create a new array of topics, updating the questions for the specific topic
         const updatedTopics = topics.map((t) =>
           t.id === topic.id ? { ...topic, questions: updatedQuestions } : t
         );
-      
-        // Update the state with the new topics array
         setTopics(updatedTopics);
       }
+      
       
     // function handleUpdateQuestion(updatedQuestion) {
     //     const topic = topics.find((topic) => topic.id === updatedQuestion.topic_id)

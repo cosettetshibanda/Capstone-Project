@@ -23,6 +23,7 @@ class AnswersController < ApplicationController
 
     def create
         puts "Received data: #{params.inspect}"
+        byebug
         answer = @current_user.answers.create!(answer_params)
         render json: answer, status: :created
     end

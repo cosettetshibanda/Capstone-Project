@@ -59,12 +59,16 @@ const UsersProvider = ({ children }) => {
         })
         setCurrentUser(prevState => ({...prevState, questions: updatedQuestions}))
       }
+
+      const addUserAnswer = (newAnswer) => {
+        setCurrentUser((prevState) => ({...prevState, answers: [...currentUser.answers, newAnswer]}))
+      }
     
   
 
   
       return(
-          <UsersContext.Provider value={{ deleteUserQuestion, updateUserQuestion, addUserQuestion, loginUser, logoutUser, loggedIn, currentUser, setCurrentUser }}>{ children }</UsersContext.Provider>
+          <UsersContext.Provider value={{ addUserAnswer, deleteUserQuestion, updateUserQuestion, addUserQuestion, loginUser, logoutUser, loggedIn, currentUser, setCurrentUser }}>{ children }</UsersContext.Provider>
       )
   
    }

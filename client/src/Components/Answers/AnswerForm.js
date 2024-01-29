@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
 import { QuestionContext } from "../../Context/QuestionContext";
 import { useParams } from "react-router-dom";
+import { UsersContext } from "../../Context/UsersContext";
 
 function AnswerForm() {
   const params = useParams();
-  const { questions } = useContext(QuestionContext);
+  const { questions, handleAddAnswer } = useContext(QuestionContext);
+  const {addUserAnswer} = useContext(UsersContext)
 
   const question = questions.find(
     (question) => question.id === parseInt(params.question_id)
@@ -33,23 +35,25 @@ function AnswerForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     const newAnswer = {
-      ...formData,
+      answer: formData.answer,
+      question_id: formData.question_id,
     };
-
+  
     fetch("/answers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newAnswer),
+      body: JSON.stringify({ answer: newAnswer }),
     })
       .then((r) => r.json())
       .then((data) => {
-        // handleAddQuestion(data)
+         addUserAnswer(data)
+         handleAddAnswer(data)
       });
-
+  
     setFormData({
       answer: "",
     });
@@ -63,7 +67,7 @@ function AnswerForm() {
           value={formData.answer}
           type="text"
           name="answer"
-          placeholder="Post"
+          placeholder="Answer"
           onChange={handleChange}
         />
         <button type="submit">Add Answer</button>

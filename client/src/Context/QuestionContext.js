@@ -49,16 +49,19 @@ const QuestionProvider = ({children}) => {
 
       function handleAddAnswer(newAnswer) {
         const question = newAnswer.question ? questions.find((q) => q.id === newAnswer.question.id) : null;
-  
+      
         if (!question) {
-          return; 
+          return;
         }
-        const updatedAnswers = [...question.answers, newAnswer];
+      
+        const updatedAnswers = Array.isArray(question.answers) ? [...question.answers, newAnswer] : [newAnswer];
         const updatedQuestions = questions.map((q) =>
           q.id === question.id ? { ...question, answers: updatedAnswers } : q
         );
+      
         setQuestions(updatedQuestions);
       }
+      
     
 
     // function handleDeleteQuestion(question) {

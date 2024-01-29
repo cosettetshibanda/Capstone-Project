@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { QuestionContext } from "../../Context/QuestionContext";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { UsersContext } from "../../Context/UsersContext";
 
 function AnswerForm() {
   const params = useParams();
+  const navigate = useNavigate()
   const { questions, handleAddAnswer } = useContext(QuestionContext);
   const {addUserAnswer} = useContext(UsersContext)
 
@@ -57,6 +58,7 @@ function AnswerForm() {
     setFormData({
       answer: "",
     });
+    navigate(`/view-answers/${question.id}`)
   };
 
   return (

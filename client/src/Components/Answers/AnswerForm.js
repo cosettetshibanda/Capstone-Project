@@ -55,13 +55,12 @@ function AnswerForm() {
         } else {
             addUserAnswer(data)
             handleAddAnswer(data)
+              setFormData({
+                answer: "",
+              });
+              navigate(`/view-answers/${question.id}`)
         }
       });
-  
-    setFormData({
-      answer: "",
-    });
-    navigate(`/view-answers/${question.id}`)
   };
 
   return (

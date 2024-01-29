@@ -70,6 +70,7 @@ function QuestionForm({params, topic}){
 
     return(
     <div className="NewQuestion" >
+        {errorsList}
         <h3>You selected the {topic} topic to add new question to.</h3>
         <form onSubmit={handleSubmit}>
             <input value={formData.post}  type="text" name="post" placeholder="Post" onChange={handleChange} />

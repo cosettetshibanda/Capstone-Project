@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom"
 
 function TopicForm(){
     const {handleAddTopic} = useContext(TopicContext)
+    const [errors, setErrors] = useState()
+    const errorsList = errors?.map((error, idx) => <li key={idx} style={{color: 'red'}}>{error}</li>)
+
 
     const navigate = useNavigate()
     const [topic, setTopic] = useState("")
@@ -25,8 +28,12 @@ function TopicForm(){
   })
     .then((r) => r.json())
     .then((data) => {
-      handleAddTopic(data);
-      navigate("/");
+        if(data.errors) {
+            setErrors(data.errors)
+        } else{ 
+            handleAddTopic(data);
+            navigate("/");
+        }
     });
 
   setTopic(""); // Clear the input after submission
@@ -36,6 +43,7 @@ function TopicForm(){
     return (
 
         <div className="NewTopic" >
+            {errorsList}
             <form  onSubmit={handleSubmit}>
                 <input 
                     onChange={handleChange}

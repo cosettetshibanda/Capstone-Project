@@ -34,7 +34,7 @@ function TopicQuestions ({question}){
             deleteQuestion(question)
           })
           .catch((error) => {
-            console.error('Error deleting question:', error);
+            setErrors('Error deleting question:', error);
           });
       };
 

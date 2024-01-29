@@ -2,15 +2,31 @@ import {useContext, useEffect, useState} from "react"
 import { TopicContext } from "../../Context/TopicContext"
 import { UsersContext } from "../../Context/UsersContext"
 import { QuestionContext } from "../../Context/QuestionContext"
+import { useNavigate } from "react-router-dom"
 
 function QuestionForm({params, topic}){
     const {handleAddQuestion} = useContext(TopicContext)
-    const {addUserQuestion} = useContext(UsersContext)
+    const {addUserQuestion, loggedIn} = useContext(UsersContext)
     const {handleNewQuestion} = useContext(QuestionContext)
+
+    const navigate = useNavigate()
+    const [errors, setErrors] = useState()
+    const errorsList = errors?.map((error, idx) => <li key={idx} style={{color: 'red'}}>{error}</li>)
+
+
     const [formData, setFormData] = useState({
         post: "",
         topic_id: parseInt(params.topic_id, 10) || 0 
     });
+
+    useEffect(() => {
+        if(!loggedIn){
+            navigate("/")
+        }
+        return() => {
+            setErrors([])
+        }
+    }, [loggedIn, navigate, setErrors])
 
 
     const handleChange = (e) => {
@@ -37,13 +53,17 @@ function QuestionForm({params, topic}){
         })
         .then(r => r.json())
         .then(data => {
-
-            handleAddQuestion(data)
-            addUserQuestion(data)
-            handleNewQuestion(data)
-            setFormData({
-                post: ""
-            })
+            if(data.errors) {
+                setErrors(data.errors)
+            } else {
+                handleAddQuestion(data)
+                addUserQuestion(data)
+                handleNewQuestion(data)
+                setFormData({
+                    post: ""
+    
+                })
+            }
         })
     }
  

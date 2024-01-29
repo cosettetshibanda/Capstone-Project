@@ -8,6 +8,8 @@ function AnswerForm() {
   const navigate = useNavigate()
   const { questions, handleAddAnswer } = useContext(QuestionContext);
   const {addUserAnswer} = useContext(UsersContext)
+  const [errors, setErrors] = useState()
+  const errorsList = errors?.map((error, idx) => <li key={idx} style={{color: 'red'}}>{error}</li>)
 
   const question = questions.find(
     (question) => question.id === parseInt(params.question_id)
@@ -48,8 +50,12 @@ function AnswerForm() {
     })
       .then((r) => r.json())
       .then((data) => {
-         addUserAnswer(data)
-         handleAddAnswer(data)
+        if(data.errors){
+            setErrors(data.errors)
+        } else {
+            addUserAnswer(data)
+            handleAddAnswer(data)
+        }
       });
   
     setFormData({
@@ -60,6 +66,7 @@ function AnswerForm() {
 
   return (
     <div className="NewAnswer">
+        {errorsList}
       {question && <h3>{question.post}</h3>}
       <form onSubmit={handleSubmit}>
         <input

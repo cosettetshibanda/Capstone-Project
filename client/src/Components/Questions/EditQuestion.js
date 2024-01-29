@@ -7,7 +7,8 @@ import { QuestionContext } from "../../Context/QuestionContext"
 
 function EditQuestion({question, toggleEditForm}) {
     const {id} = question
-    const [errors, setErrors] = useState("")
+    const [errors, setErrors] = useState([])
+    const errorsList = errors?.map((error, idx) => <li key={idx} style={{color: 'red'}}>{error}</li>)
     const [updateQuestion, setUpdateQuestion] = useState(question)
     const {handleDeleteQuestion, handleUpdateQuestion} = useContext(TopicContext)
     const {updateUserQuestion, loggedIn} = useContext(UsersContext)
@@ -29,8 +30,13 @@ function EditQuestion({question, toggleEditForm}) {
         method: "DELETE",
         })
         .then(r => r.json())
-        .then(() => {
+        .then(question => {
+          if(question.errors){
+            setErrors(question.errors)
+          } else {
             handleDeleteQuestion(question)
+          }
+
         })
     }
 
@@ -60,7 +66,7 @@ function EditQuestion({question, toggleEditForm}) {
 
       return (
         <div>
-            {errors}
+            {errorsList}
             <form onSubmit={handleSubmit}>
                 <input value={updateQuestion.post} type="text" name="post" onChange={handleEditChange} />
                 <button type="submit">Edit</button>

@@ -7,7 +7,6 @@ function QuestionForm({params, topic}){
     const {handleAddQuestion} = useContext(TopicContext)
     const {addUserQuestion} = useContext(UsersContext)
     const {handleNewQuestion} = useContext(QuestionContext)
-console.log(params)
     const [formData, setFormData] = useState({
         post: "",
         topic_id: parseInt(params.topic_id, 10) || 0 

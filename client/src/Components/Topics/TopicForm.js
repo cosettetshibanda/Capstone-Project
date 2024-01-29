@@ -9,28 +9,28 @@ function TopicForm(){
     const [topic, setTopic] = useState("")
 
     const handleChange = (e) => {
-        setTopic({ ...topic, [e.target.name]: e.target.value });
+        setTopic(e.target.value);
       };
-      
-    const handleSubmit = (e) => {
-        e.preventDefault()
 
-    
-        fetch ("/topics", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(topic)
-        })
-        .then(r => r.json())
-        .then(data => {
 
-            handleAddTopic(data)
-            navigate("/");
-        })
-        setTopic("")
-    }
+   const handleSubmit = (e) => {
+  e.preventDefault();
+
+  fetch("/topics", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ topic: topic }), // Ensure topic is wrapped in an object with the key "topic"
+  })
+    .then((r) => r.json())
+    .then((data) => {
+      handleAddTopic(data);
+      navigate("/");
+    });
+
+  setTopic(""); // Clear the input after submission
+};
 
 
     return (

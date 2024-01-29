@@ -25,14 +25,16 @@ function AnswerList() {
     const answers =
     selectedQuestion && selectedQuestion.answers && selectedQuestion.answers.length > 0
       ? selectedQuestion.answers.map((answer) => (
-          <>
-            <h3>{selectedQuestion.post}</h3>
-            {answer.answer}
-          </>
+          <li>
+
+              {answer.answer}
+          </li>
+        
         ))
-      : "No answers available";
-    return(
-        <div>
+        : "No answers available";
+        return(
+            <div>
+            <h3>{selectedQuestion.post}</h3>
             <div id="Answer-List">{answers}</div>
         </div>
     )

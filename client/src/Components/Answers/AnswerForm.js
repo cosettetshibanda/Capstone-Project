@@ -13,14 +13,12 @@ function AnswerForm() {
     (question) => question.id === parseInt(params.question_id)
   );
 
-  console.log(params);
 
   const [formData, setFormData] = useState({
     answer: "",
     question_id: parseInt(params.question_id, 10) || 0,
   });
 
-  console.log("formData", formData);
 
   const handleChange = (e) => {
     setFormData((prevFormData) => ({
@@ -32,8 +30,7 @@ function AnswerForm() {
     }));
   };
 
-  console.log("formData2", formData);
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
   

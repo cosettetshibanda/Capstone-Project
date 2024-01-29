@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { QuestionContext } from "../../Context/QuestionContext"
+import { useParams } from "react-router-dom"
 
 
 function AnswerList() {
@@ -19,13 +20,17 @@ function AnswerList() {
         }
     },[questions, params, question])
 
-    const answers = selectedQuestion.answers.map((answer) => (
-        <>
+    console.log(selectedQuestion, "selectedQuestion");
+
+    const answers =
+    selectedQuestion && selectedQuestion.answers && selectedQuestion.answers.length > 0
+      ? selectedQuestion.answers.map((answer) => (
+          <>
             <h3>{selectedQuestion.post}</h3>
             {answer.answer}
-        </>
-    ))
-
+          </>
+        ))
+      : "No answers available";
     return(
         <div>
             <div id="Answer-List">{answers}</div>
@@ -33,3 +38,5 @@ function AnswerList() {
     )
 
 }
+
+export default AnswerList

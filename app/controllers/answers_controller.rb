@@ -22,6 +22,7 @@ class AnswersController < ApplicationController
     end
 
     def create
+        puts "Received data: #{params.inspect}"
         answer = @current_user.answers.create!(answer_params)
         render json: answer, status: :created
     end
@@ -34,11 +35,11 @@ class AnswersController < ApplicationController
 
     private
 
-    def question_find
+    def answer_find
       @answer = @current_user.answers.find(params[:id])
     end
 
-    def question_params
-        params.require(:answer).permit(:answer, :id, :question_id)
+    def answer_params
+        params.require(:answer).permit(:answer, :question_id)
     end
 end

@@ -62,7 +62,7 @@ const TopicProvider = ({children}) => {
     
       console.log(newQuestion)
         // Find the topic associated with the new question
-        const topic = topics.find((t) => t.id === newQuestion.topic.id);
+        const topic = newQuestion.topic ? topics.find((t) => t.id === newQuestion.topic.id) : null;
         console.log(topic)
       
         if (!topic) {

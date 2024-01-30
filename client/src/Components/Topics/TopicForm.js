@@ -24,7 +24,7 @@ function TopicForm(){
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ topic: topic }), // Ensure topic is wrapped in an object with the key "topic"
+    body: JSON.stringify({ topic: topic }), 
   })
     .then((r) => r.json())
     .then((data) => {
@@ -36,7 +36,7 @@ function TopicForm(){
         }
     });
 
-  setTopic(""); // Clear the input after submission
+  setTopic(""); 
 };
 
 

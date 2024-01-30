@@ -9,7 +9,6 @@ import { TopicProvider } from './Context/TopicContext';
 import TopicCard from './Components/Topics/TopicCard';
 import AnswerForm from './Components/Answers/AnswerForm';
 import { QuestionProvider } from './Context/QuestionContext';
-import QuestionAnswers from './Components/Answers/QuestionAnswers';
 import QuestionList from './Components/Questions/QuestionList';
 import UsersQuestions from './Components/Questions/UsersQuestions';
 import AnswerList from './Components/Answers/AnswerList';

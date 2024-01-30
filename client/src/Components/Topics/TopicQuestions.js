@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react"
 import { TopicContext } from "../../Context/TopicContext"
 import { UsersContext } from "../../Context/UsersContext"
-import { NavLink, useNavigate } from "react-router-dom"
 import EditQuestion from "../Questions/EditQuestion"
 import { QuestionContext } from "../../Context/QuestionContext"
+import { useNavigate } from "react-router-dom"
 
 
 function TopicQuestions ({question}){
@@ -45,30 +45,6 @@ function TopicQuestions ({question}){
       const handleViewAnswerNav = () => {
         navigate(`/view-answers/${question.id}`)
       }
-
-
-
-    // const handleEditChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setUpdateQuestion({ ...updateQuestion, [name]: value });
-    //   };
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    
-    //     fetch(`/questions/${question.id}`, {
-    //       method: "PATCH",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({post: updateQuestion}),
-    //     })
-    //       .then((r) => r.json())
-    //       .then((updatedQuestion) => handleUpdateQuestion(updatedQuestion))
-    //       setUpdateQuestion("")
-    //   }
-
-
 
 
       const toggleEditForm = () => {

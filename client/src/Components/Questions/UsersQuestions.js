@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UsersContext } from "../../Context/UsersContext";
-import { QuestionContext } from "../../Context/QuestionContext";
 import TopicQuestions from "../Topics/TopicQuestions";
 
 

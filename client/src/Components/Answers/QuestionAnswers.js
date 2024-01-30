@@ -1,14 +1,12 @@
 import { useContext, useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import { UsersContext } from "../../Context/UsersContext"
-import TopicQuestions from "../Topics/TopicQuestions"
+import { useParams } from "react-router-dom"
 import { QuestionContext } from "../../Context/QuestionContext"
 
 
 function QuestionAnswers () {
     const {questions} = useContext(QuestionContext)
     const params = useParams()
-    const [selectedQuestion, setSelectedQuestion] = useState({
+    const [ setSelectedQuestion] = useState({
         answers: []
     })
     console.log(questions)
@@ -23,7 +21,7 @@ useEffect(() => {
       return question;
     });
   }
-}, [questions, params, question]);
+}, [questions, params, question, setSelectedQuestion]);
     // const answer = selectedQuestion.answers.map((answer) => (
     //     <div>
     //         {selectedQuestion.post}

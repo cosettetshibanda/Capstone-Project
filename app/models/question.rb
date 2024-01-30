@@ -4,6 +4,6 @@ class Question < ApplicationRecord
 
     has_many :answers, dependent: :destroy
 
-    validates :post, presence: true
+    validates :post, presence: true, length: {maximum:10000}
 
 end

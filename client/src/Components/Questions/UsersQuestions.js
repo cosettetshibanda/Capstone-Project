@@ -21,9 +21,6 @@ function UsersQuestions () {
     const myQuestions = currentUser?.questions ? (
         currentUser.questions.map((question) => (
             <TopicQuestions key={question.id} question={question} />
-        //     <li key={question.id}>
-        //     <Link to={`/questions/${question.id}`}>{question.post}</Link>
-        //   </li>
         ))
     ) : null
 
@@ -39,34 +36,5 @@ function UsersQuestions () {
     )
 
 }
-
-// export default QuestionAnswers
-// function UsersQuestions() {
-//     const {question_id} = useParams()
-//     const navigate = useNavigate()
-//     const {loggedIn} = useContext(UsersContext)
-//     const {questions} = useContext(QuestionContext)
-//     const [question, setQuestion] = useState([])
-
-//     const selectedQuestion = questions.find((question) => question.id === parseInt(question_id))
-//     console.log(selectedQuestion)
-
-//     useEffect(() => {
-//         if (!loggedIn) {
-//           navigate("/");
-//         }
-//       }, [loggedIn, navigate]);
-
-//       useEffect(() => {
-//         if(selectedQuestion){
-//             if(selectedQuestion.id !== question.id)
-//             setQuestion(selectedQuestion)
-//         }
-//       }, [selectedQuestion, question.id])
-      
-//     return (
-//         <TopicQuestions question={question} />
-//     )
-// }
 
 export default UsersQuestions

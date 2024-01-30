@@ -14,13 +14,13 @@ class UsersController < ApplicationController
     def create
         user = User.new(user_params)
         if user.save
+          session[:user_id] = user.id  # Set session[:user_id] with the new user's ID
           UserMailer.with(user: user).welcome_email.deliver_later    
           render json: user
         else
-          render action: 'new'
+          render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end
       end
-
     def show
         render json: @current_user
     end

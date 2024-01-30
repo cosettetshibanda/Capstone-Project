@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UsersContext } from "../Context/UsersContext";
 // import { ErrorsContext } from "./Context/ErrorsContext";
@@ -7,6 +7,7 @@ function SignUpForm() {
     const navigate = useNavigate()
     // const {setErrors} = useContext(ErrorsContext)
     const { loginUser } = useContext(UsersContext)
+    const isMounted = useRef(true);
     const [errors, setErrors] = useState()
     const errorsList = errors?.map((error, idx) => <li key={idx} style={{color: 'red'}}>{error}</li>)
 
@@ -33,17 +34,25 @@ function SignUpForm() {
             },
             body: JSON.stringify(formData),
         })
-        .then(response => response.json())
-        .then(data => {
-            if(data.errors) {
-                setErrors(data.errors)
-            } else {
-                loginUser(data)
-                navigate("/")
-                setErrors([])
-                }
-        })
-      }
+        .then((response) => response.json())
+      .then((data) => {
+        if (isMounted.current) {
+          if (data.errors) {
+            setErrors(data.errors);
+          } else {
+            loginUser(data);
+            navigate("/");
+            setErrors([]);
+          }
+        }
+      });
+  };
+
+      useEffect(() => {
+        return () => {
+          isMounted.current = false;
+        };
+      }, []);
 
     return (
         <div>

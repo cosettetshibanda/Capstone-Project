@@ -2,7 +2,7 @@ class Answer < ApplicationRecord
     belongs_to :question
     belongs_to :user
 
-    validates :answer, length: {minimum: 1, maximum: 200}
+    validates :answer, length: {minimum: 2, maximum: 200}
     validate :user_cannot_answer_own_question
 
   private

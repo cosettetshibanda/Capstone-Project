@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { QuestionContext } from "../../Context/QuestionContext"
 import { useParams } from "react-router-dom"
+import AnswerCard from "./AnswerCard"
 
 
 function AnswerList() {
@@ -25,11 +26,7 @@ function AnswerList() {
     const answers =
     selectedQuestion && selectedQuestion.answers && selectedQuestion.answers.length > 0
       ? selectedQuestion.answers.map((answer) => (
-          <li>
-
-              {answer.answer}
-          </li>
-        
+          <AnswerCard key={answer.id} answer={answer} />        
         ))
         : "No answers available";
         return(

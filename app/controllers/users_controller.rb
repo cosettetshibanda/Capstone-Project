@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         user = User.new(user_params)
         if user.save
           session[:user_id] = user.id  # Set session[:user_id] with the new user's ID
-          UserMailer.with(user: user).welcome_email.deliver_later    
+          UserMailer.with(user: user).welcome_email.deliver_now!    
           render json: user
         else
           render json: { errors: user.errors.full_messages }, status: :unprocessable_entity

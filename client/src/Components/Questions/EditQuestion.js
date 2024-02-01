@@ -44,26 +44,37 @@ function EditQuestion({question, toggleEditForm}) {
         const { name, value } = e.target;
         setUpdateQuestion({ ...updateQuestion, [name]: value });
       };
-
-    const handleSubmit = (e) => {
+      const handleSubmit = (e) => {
         e.preventDefault();
-    console.log(updateQuestion)
+        console.log(updateQuestion);
+    
         fetch(`/questions/${id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updateQuestion),
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updateQuestion),
         })
-        .then((r) => r.json())
+        .then((r) => {
+            if (!r.ok) {
+                // If the response status is not OK (e.g., 422 Unprocessable Entity), handle the error
+                return r.json().then((errorData) => Promise.reject(errorData));
+            }
+            return r.json(); // Parse the response body for successful requests
+        })
         .then((updatedQuestion) => {
-          handleUpdateQuestion(updatedQuestion);
-          updateUserQuestion(updatedQuestion)
-          editQuestion(updateQuestion)
-          toggleEditForm()
+            handleUpdateQuestion(updatedQuestion);
+            updateUserQuestion(updatedQuestion);
+            editQuestion(updateQuestion);
+            toggleEditForm();
         })
-      }
-
+        .catch((error) => {
+            // Handle the error and setErrors
+            setErrors(error.errors || ["An unexpected error occurred"]);
+            console.error("Error:", error);
+        });
+    };
+console.log(errorsList, "errorsList")
       return (
         <div>
             {errorsList}

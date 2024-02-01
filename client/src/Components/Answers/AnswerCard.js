@@ -1,11 +1,15 @@
+import { useContext } from "react"
+import { UsersContext } from "../../Context/UsersContext"
 
 
 function AnswerCard({answer}) {
-    console.log(answer, "answer")
-    // const username = answer.users.map((user) => user.username);
+    const {users} = useContext(UsersContext)
+    
+    const foundUser = users.find((user) => user.id === answer.user_id);
+    
     return (
         <div>
-            {answer.answer} -
+            {answer.answer} - {foundUser.username}
         </div>
     )
 }

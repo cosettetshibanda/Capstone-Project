@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -7,6 +8,8 @@ const UsersContext = createContext({});
 const UsersProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(false)
+    const [users, setUsers] = useState([])
+    const navigate = useNavigate()
   
 
 
@@ -19,6 +22,16 @@ const UsersProvider = ({ children }) => {
         }
       })
     }, [])
+
+    const loadUsers = () => {
+      if(loggedIn) {
+          fetch("/users")
+          .then(r => r.json())
+          .then(data => setUsers(data))
+      }
+  } 
+  
+  useEffect(loadUsers, [loggedIn, navigate])
 
 
     const loginUser = (user) => {
@@ -68,7 +81,7 @@ const UsersProvider = ({ children }) => {
 
   
       return(
-          <UsersContext.Provider value={{ addUserAnswer, deleteUserQuestion, updateUserQuestion, addUserQuestion, loginUser, logoutUser, loggedIn, currentUser, setCurrentUser }}>{ children }</UsersContext.Provider>
+          <UsersContext.Provider value={{ users, addUserAnswer, deleteUserQuestion, updateUserQuestion, addUserQuestion, loginUser, logoutUser, loggedIn, currentUser, setCurrentUser }}>{ children }</UsersContext.Provider>
       )
   
    }

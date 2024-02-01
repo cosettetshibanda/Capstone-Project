@@ -21,7 +21,7 @@ function AnswerList() {
         }
     },[questions, params, question])
 
-    console.log(selectedQuestion, "selectedQuestion");
+
 
     const answers =
     selectedQuestion && selectedQuestion.answers && selectedQuestion.answers.length > 0

@@ -31,7 +31,7 @@ function App() {
             <Route path="/topic/:topic_id" element={<TopicCard />} />
             <Route path="/add-answers/:question_id" element={<AnswerForm />} />
             <Route path="/view-answers/:question_id" element={<AnswerList />} />
-            <Route path="/:currentUser_username/:questions" element={<UsersQuestions />} />
+            <Route path="/:sluggedUsername/questions" element={<UsersQuestions />} />
           </Routes>
         </QuestionProvider>
       </TopicProvider>

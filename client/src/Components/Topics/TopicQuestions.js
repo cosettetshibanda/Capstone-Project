@@ -55,7 +55,7 @@ function TopicQuestions ({question}){
         <>
             {errors}
             <figure>
-                    <li>{question.post} </li>
+                    <li className="question">{question.post} </li>
                 {showEditForm ? (
                 <EditQuestion
               question={question}

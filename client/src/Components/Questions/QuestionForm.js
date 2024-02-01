@@ -12,12 +12,14 @@ function QuestionForm({params, topic}){
     const navigate = useNavigate()
     const [errors, setErrors] = useState()
     const errorsList = errors?.map((error, idx) => <li key={idx} style={{color: 'red'}}>{error}</li>)
-
+console.log(params, "before params")
 
     const [formData, setFormData] = useState({
         post: "",
         topic_id: parseInt(params.topic_id, 10) || 0 
     });
+    console.log(params, "after params")
+    console.log(formData, "formData")
 
     useEffect(() => {
         if(!loggedIn){
@@ -30,42 +32,45 @@ function QuestionForm({params, topic}){
 
 
     const handleChange = (e) => {
-        setFormData(prevFormData => ({
-            ...prevFormData,
-            [e.target.name]: e.target.name === "topic_id" ? parseInt(e.target.value, 10) || 0 : e.target.value
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.name === "topic_id" ? (e.target.value ? parseInt(e.target.value, 10) : null) : e.target.value,
         }));
-    }
+    };
+    
+    
+   const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    
-        const newQuestion = {
-            post: formData.post,
-            topic_id: formData.topic_id
-        };
-    
-        fetch ("/questions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newQuestion)
-        })
-        .then(r => r.json())
-        .then(data => {
-            if(data.errors) {
-                setErrors(data.errors)
+    const newQuestion = {
+        post: formData.post,
+        topic_id: formData.topic_id !== undefined ? formData.topic_id : null,
+    };
+
+    fetch("/questions", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newQuestion),
+    })
+        .then((r) => r.json())
+        .then((data) => {
+            if (data.errors) {
+                setErrors(data.errors);
             } else {
-                handleAddQuestion(data)
-                addUserQuestion(data)
-                handleNewQuestion(data)
+                handleAddQuestion(data);
+                addUserQuestion(data);
+                handleNewQuestion(data);
                 setFormData({
-                    post: ""
-    
-                })
+                    post: "",
+                    topic_id: parseInt(params.topic_id, 10) || 0 
+                });
             }
-        })
-    }
+        });
+};
+
+    
  
 
     return(

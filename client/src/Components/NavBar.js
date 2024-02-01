@@ -9,8 +9,14 @@ import TopicForm from "./Topics/TopicForm";
 
 
 function NavBar() {
-
-    const {loggedIn, logoutUser, currentUser} = useContext(UsersContext)
+  
+  const {loggedIn, logoutUser, currentUser} = useContext(UsersContext)
+  const sluggifyUsername = (username) => {
+    if (username) {
+      return username.replace(/\s+/g, "-").toLowerCase();
+    }
+    return "";
+  };
   
 
 
@@ -20,14 +26,18 @@ function NavBar() {
     }
 
     const loggedInLinks = () => {
+      const sluggedUsername = sluggifyUsername(currentUser.username);
+
         return(
           <>
             <li><Link to="#" onClick={handleLogoutClick}>Logout</Link></li>
             <br></br>
             <TopicForm />
             <br></br>
-            <li><Link to="/questions" >All Questions</Link></li>
-            <li><Link to={`/${currentUser.username}s/questions`} >My Questions</Link></li>
+            <p className="personalLinks">
+              <Link to="/questions" >All Questions</Link>
+              <Link to={`/${sluggedUsername}/questions`}>My Questions</Link>
+              </p>
             <br></br>
             <TopicList />
 

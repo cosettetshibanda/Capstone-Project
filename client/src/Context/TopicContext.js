@@ -29,7 +29,7 @@ const TopicProvider = ({children}) => {
     
 
     function handleDeleteQuestion(question) {
-        const topic = topics.find((topic) => topic.id === question.topic.id)
+        const topic = topics.find((topic) => topic.id === question.topic_id)
         const updatedQuestions = topic.questions.filter((q) => q.id !==question.id)
         const updatedTopics = topics.map((t) => t.id === topic.id ? {...topic, questions: updatedQuestions} : t)
 
@@ -38,7 +38,7 @@ const TopicProvider = ({children}) => {
 
     function handleUpdateQuestion(updatedQuestion) {
         console.log(updatedQuestion)
-        const topic = topics.find((topic) => topic.id === updatedQuestion.topic.id);
+        const topic = topics.find((topic) => topic.id === updatedQuestion.topic_id);
         console.log(topic)
         // Check if topic is found
         if (!topic) {
@@ -58,7 +58,7 @@ const TopicProvider = ({children}) => {
       }
 
       function handleAddQuestion(newQuestion) {
-        const topic = newQuestion.topic ? topics.find((t) => t.id === newQuestion.topic.id) : null;
+        const topic = newQuestion.topic ? topics.find((t) => t.id === newQuestion.topic_id) : null;
   
         if (!topic) {
           return; 

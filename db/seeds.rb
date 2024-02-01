@@ -21,18 +21,20 @@
 # Answer.create(answer: "You can give her a bit of tough love so she learns how to self soothe.", user_id: 5, question_id: 15)
 # Answer.create(answer: "I like advent bottles", user_id: 2, question_id: 12)
 
-henry = User.create(username: "Henry", password: "Switch", email: "Switch@gmail.com")
-tim = User.create(username: "Tim", password: "Playstation", email: "Playstation@gmail.com")
-tam = User.create(username: "Tam", password: "Tam", email: "Tam@yahoo.com")
+user1 = User.create(username: "Henry", password: "Switch", email: "Switch@gmail.com")
+user2 = User.create(username: "Tim", password: "Playstation", email: "Playstation@gmail.com")
+user3 = User.create(username: "Tam", password: "Tam", email: "Tam@yahoo.com")
 
-mixed_kids = Topic.create(topic: "Mixed kids")
-toys = Topic.create(topic: "Toys")
-diapers = Topic.create(topic: "Diapers")
+topic1 = Topic.create(topic: "Mixed kids")
+topic2 = Topic.create(topic: "Toys")
+topic3 = Topic.create(topic: "Diapers")
 
-hair_questions = mixed_kids.questions.create(post: "What products do you use on their hair?", user: henry)
-clothes_question = toys.questions.create(post: "Where do you buy clothes?", user: tim)
-sleep_training_question = diapers.questions.create(post: "What age do you start sleep training?", user: tam)
+# Creating questions and answers after saving users and topics
+question1 = Question.create(post: "What products do you use on their hair?", user: user1, topic: topic1)
+question1.answers.create(answer: "It's best to use a leave in conditioner and an oil.", user: user1)
 
-hair_questions.answers.create(answer: "Try adding food slowly and give him time to adjust to the textures.", user: henry)
-clothes_questions.answers.create(answer: "You can give her a bit of tough love so she learns how to self soothe.", user: tim)
-sleep_training_questions.answers.create(answer: "I like advent bottles", user: tam)
+question2 = Question.create(post: "Where do you buy toys?", user: user2, topic: topic2)
+question2.answers.create(answer: "We really like going to Target.", user: user2)
+
+question3 = Question.create(post: "What brand of diapers do you like?", user: user3, topic: topic3)
+question3.answers.create(answer: "Pampers are our favorite", user: user3)
